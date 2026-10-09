@@ -1,6 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { Bell, ChevronDown, ClipboardList, Compass, MapPin, Sparkles, User, Users } from "lucide-react";
 import type { ReactNode } from "react";
+import { useUser } from "@/lib/auth";
 
 const tabs = [
   { to: "/", label: "홈/탐색", icon: Compass },
@@ -12,6 +13,7 @@ const tabs = [
 
 export function AppShell({ children, header = true, nav = true, footer }: { children: ReactNode; header?: boolean; nav?: boolean; footer?: ReactNode }) {
   const { pathname } = useLocation();
+  const user = useUser();
   return (
     <div className="min-h-screen bg-secondary">
       <div className="relative mx-auto flex min-h-screen max-w-md flex-col bg-background shadow-card">
@@ -30,7 +32,7 @@ export function AppShell({ children, header = true, nav = true, footer }: { chil
                 <Bell className="size-5" />
                 <span className="absolute right-2 top-2 size-2 rounded-full bg-destructive" />
               </button>
-              <div className="grid size-10 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">배민</div>
+              <Link to="/login" aria-label="my배민" className="grid size-10 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">{user ? user.name[0] : "로그인"}</Link>
             </div>
           </header>
         )}

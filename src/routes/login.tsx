@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MessageCircle, Phone, X } from "lucide-react";
+import { CreditCard, Loader2, LogOut, MessageCircle, Phone, X } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+import { AppShell, Card } from "@/components/AppShell";
+import { signIn, signOut, useUser, type Provider } from "@/lib/auth";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -15,8 +19,65 @@ export const Route = createFileRoute("/login")({
   component: Login,
 });
 
+const label: Record<Provider, string> = { kakao: "카카오", naver: "네이버", phone: "휴대폰번호" };
+const history = [
+  { date: "10.02", title: "3분기 마케팅팀 워크숍 점심", count: 12, amount: "186,000원" },
+  { date: "09.18", title: "신규 입사자 환영 저녁", count: 8, amount: "142,000원" },
+  { date: "09.05", title: "주간 회의 도시락", count: 10, amount: "115,000원" },
+];
+
 function Login() {
-  const btn = "flex h-14 w-full items-center justify-center gap-2 rounded-full text-base font-bold";
+  const user = useUser();
+  const [loading, setLoading] = useState<Provider | null>(null);
+
+  const go = (p: Provider) => {
+    setLoading(p);
+    setTimeout(() => {
+      signIn(p);
+      setLoading(null);
+      toast.success(`${label[p]} 계정으로 인증되었습니다`);
+    }, 600);
+  };
+
+  if (user) {
+    return (
+      <AppShell>
+        <div className="space-y-4 p-5">
+          <Card>
+            <div className="flex items-center gap-4">
+              <div className="grid size-14 place-items-center rounded-full bg-primary text-lg font-black text-primary-foreground">{user.name[0]}</div>
+              <div>
+                <p className="text-lg font-bold">{user.name} {user.title}</p>
+                <p className="text-sm text-muted-foreground">{user.team}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{label[user.provider]} 간편로그인</p>
+              </div>
+            </div>
+          </Card>
+          <Card>
+            <p className="flex items-center gap-2 font-bold"><CreditCard className="size-5 text-primary-strong" /> 등록된 결제수단</p>
+            <p className="mt-2 text-sm text-muted-foreground">{user.card}</p>
+          </Card>
+          <Card>
+            <p className="font-bold">최근 단체주문</p>
+            <ul className="mt-3 divide-y divide-border">
+              {history.map((h) => (
+                <li key={h.title} className="flex items-center justify-between py-3 text-sm">
+                  <div><p className="font-semibold">{h.title}</p><p className="text-muted-foreground">{h.date} · {h.count}명</p></div>
+                  <span className="font-bold">{h.amount}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+          <button onClick={() => { signOut(); toast("로그아웃되었습니다"); }} className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl border border-border bg-card font-semibold text-muted-foreground">
+            <LogOut className="size-4" /> 로그아웃
+          </button>
+        </div>
+      </AppShell>
+    );
+  }
+
+  const btn = "flex h-14 w-full items-center justify-center gap-2 rounded-full text-base font-bold disabled:opacity-60";
+  const icon = (p: Provider, el: React.ReactNode) => (loading === p ? <Loader2 className="size-5 animate-spin" /> : el);
   return (
     <div className="min-h-screen bg-secondary">
       <div className="mx-auto flex min-h-screen max-w-md flex-col bg-card px-6 py-5">
@@ -26,9 +87,9 @@ function Login() {
           <p className="mt-3 rounded-full bg-primary-soft px-3 py-1 text-sm font-bold text-accent-foreground">단체주문 AI 비서</p>
         </div>
         <div className="space-y-3">
-          <Link to="/" className={`${btn} bg-kakao text-kakao-foreground`}><MessageCircle className="size-5 fill-current" /> 카카오로 계속하기</Link>
-          <Link to="/" className={`${btn} bg-naver text-primary-foreground`}><b>N</b> 네이버로 계속하기</Link>
-          <Link to="/" className={`${btn} border border-border`}><Phone className="size-5" /> 휴대폰번호로 계속하기</Link>
+          <button disabled={!!loading} onClick={() => go("kakao")} className={`${btn} bg-kakao text-kakao-foreground`}>{icon("kakao", <MessageCircle className="size-5 fill-current" />)} 카카오로 계속하기</button>
+          <button disabled={!!loading} onClick={() => go("naver")} className={`${btn} bg-naver text-primary-foreground`}>{icon("naver", <b>N</b>)} 네이버로 계속하기</button>
+          <button disabled={!!loading} onClick={() => go("phone")} className={`${btn} border border-border`}>{icon("phone", <Phone className="size-5" />)} 휴대폰번호로 계속하기</button>
         </div>
         <p className="mt-8 text-center text-xs text-muted-foreground">이용약관 | 개인정보처리방침 | 사업자정보확인</p>
       </div>
