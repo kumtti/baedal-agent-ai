@@ -8,7 +8,7 @@ export const Route = createFileRoute("/events/new")({
   validateSearch: (s: Record<string, unknown>): { q?: string } => ({ q: typeof s["q"] === "string" ? s["q"] : "" }),
   head: () => ({
     meta: [
-      { title: "새 단체주문 만들기 — 배민 단체주문 AI" },
+      { title: "새 단체주문 만들기 — 배민 테스트" },
       { name: "description", content: "AI가 요청 문장에서 일시·인원·예산·식이 제한을 정리해 행사를 만듭니다." },
       { property: "og:title", content: "새 단체주문 만들기" },
       { property: "og:description", content: "말로 요청하면 AI가 행사 조건을 정리합니다." },

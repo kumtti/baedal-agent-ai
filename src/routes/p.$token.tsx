@@ -7,7 +7,7 @@ import { selectedCandidate, setEvent, tally, useEvent, won } from "@/lib/demo";
 export const Route = createFileRoute("/p/$token")({
   head: () => ({
     meta: [
-      { title: "메뉴 고르기 — 배민 단체주문" },
+      { title: "메뉴 고르기 — 배민 테스트" },
       { name: "description", content: "로그인 없이 30초 만에 단체주문 메뉴를 선택하세요." },
       { property: "og:title", content: "단체주문 메뉴 고르기" },
       { property: "og:description", content: "메뉴 탭 → 이름 → 제출. 끝." },

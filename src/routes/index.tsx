@@ -7,7 +7,7 @@ import { candidates, resetDemo, useEvent, won } from "@/lib/demo";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "배민 단체주문 AI 비서 — 회사 단체주문을 AI가 대신" },
+      { title: "배민 테스트" },
       { name: "description", content: "행사 조건만 말하면 AI가 식당 추천, 메뉴 취합, 주문서 작성까지. 담당자는 승인만 하세요." },
       { property: "og:title", content: "배민 단체주문 AI 비서" },
       { property: "og:description", content: "추천·취합·발주까지 AI 에이전트가 함께하는 회사 단체주문." },

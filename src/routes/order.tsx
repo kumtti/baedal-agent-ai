@@ -7,7 +7,7 @@ import { setEvent, tally, useEvent, won } from "@/lib/demo";
 export const Route = createFileRoute("/order")({
   head: () => ({
     meta: [
-      { title: "AI 주문서 승인 — 배민 단체주문 AI" },
+      { title: "AI 주문서 승인 — 배민 테스트" },
       { name: "description", content: "AI가 작성한 주문서 초안을 검토하고 승인하면 식당에 발주됩니다." },
       { property: "og:title", content: "AI 주문서 승인" },
       { property: "og:description", content: "사람 승인 없이는 발주되지 않아요." },

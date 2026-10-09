@@ -8,7 +8,7 @@ import { setEvent, tally, useEvent, won } from "@/lib/demo";
 export const Route = createFileRoute("/collect")({
   head: () => ({
     meta: [
-      { title: "실시간 단체 취합 현황 — 배민 단체주문 AI" },
+      { title: "실시간 단체 취합 현황 — 배민 테스트" },
       { name: "description", content: "참여자 응답률, 메뉴별 수량, 미응답자 리마인드를 AI 코치와 함께 관리하세요." },
       { property: "og:title", content: "실시간 단체 취합 현황" },
       { property: "og:description", content: "AI 취합 코치가 미응답자 리마인드까지 챙겨요." },

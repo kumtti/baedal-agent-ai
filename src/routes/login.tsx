@@ -8,7 +8,7 @@ import { signIn, signOut, updateUser, useUser, type Provider } from "@/lib/auth"
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "로그인 — 배민 단체주문 AI" },
+      { title: "로그인 — 배민 테스트" },
       { name: "description", content: "카카오·네이버로 간편하게 로그인하고 단체주문을 시작하세요." },
       { property: "og:title", content: "배민 단체주문 로그인" },
       { property: "og:description", content: "간편 로그인으로 시작하세요." },

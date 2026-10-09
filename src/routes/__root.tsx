@@ -79,8 +79,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "배민 단체주문 AI 비서" },
-      { name: "description", content: "AI 에이전트가 함께하는 배달의민족 단체주문" },
+      { title: "배민 테스트" },
+      { name: "description", content: "AI 에이전트가 함께하는 배달의민족 단체주문 — 배민 테스트" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
