@@ -7,7 +7,7 @@ import { candidates, seedResponses, setEvent, useEvent, won } from "@/lib/demo";
 export const Route = createFileRoute("/recommend")({
   head: () => ({
     meta: [
-      { title: "AI 추천 후보 비교 — 배민 단체주문 AI" },
+      { title: "AI 추천 후보 비교 — 배민 테스트" },
       { name: "description", content: "예산·인원·식이 제한을 검증한 최적 식당 후보 3곳을 비교하고 선택하세요." },
       { property: "og:title", content: "AI 추천 후보 비교" },
       { property: "og:description", content: "제휴 식당 DB 기반으로 검증된 추천 후보." },
