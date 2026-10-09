@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CollectRouteImport } from './routes/collect'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as OrderRouteImport } from './routes/order'
+import { Route as RecommendRouteImport } from './routes/recommend'
+import { Route as EventsNewRouteImport } from './routes/events.new'
+import { Route as PTokenRouteImport } from './routes/p.$token'
+import { Route as RTokenRouteImport } from './routes/r.$token'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CollectRoute = CollectRouteImport.update({
+  id: '/collect',
+  path: '/collect',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderRoute = OrderRouteImport.update({
+  id: '/order',
+  path: '/order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecommendRoute = RecommendRouteImport.update({
+  id: '/recommend',
+  path: '/recommend',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsNewRoute = EventsNewRouteImport.update({
+  id: '/events/new',
+  path: '/events/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PTokenRoute = PTokenRouteImport.update({
+  id: '/p/$token',
+  path: '/p/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RTokenRoute = RTokenRouteImport.update({
+  id: '/r/$token',
+  path: '/r/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/collect': typeof CollectRoute
+  '/login': typeof LoginRoute
+  '/order': typeof OrderRoute
+  '/recommend': typeof RecommendRoute
+  '/events/new': typeof EventsNewRoute
+  '/p/$token': typeof PTokenRoute
+  '/r/$token': typeof RTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/collect': typeof CollectRoute
+  '/login': typeof LoginRoute
+  '/order': typeof OrderRoute
+  '/recommend': typeof RecommendRoute
+  '/events/new': typeof EventsNewRoute
+  '/p/$token': typeof PTokenRoute
+  '/r/$token': typeof RTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/collect': typeof CollectRoute
+  '/login': typeof LoginRoute
+  '/order': typeof OrderRoute
+  '/recommend': typeof RecommendRoute
+  '/events/new': typeof EventsNewRoute
+  '/p/$token': typeof PTokenRoute
+  '/r/$token': typeof RTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/collect'
+    | '/login'
+    | '/order'
+    | '/recommend'
+    | '/events/new'
+    | '/p/$token'
+    | '/r/$token'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/collect'
+    | '/login'
+    | '/order'
+    | '/recommend'
+    | '/events/new'
+    | '/p/$token'
+    | '/r/$token'
+  id:
+    | '__root__'
+    | '/'
+    | '/collect'
+    | '/login'
+    | '/order'
+    | '/recommend'
+    | '/events/new'
+    | '/p/$token'
+    | '/r/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CollectRoute: typeof CollectRoute
+  LoginRoute: typeof LoginRoute
+  OrderRoute: typeof OrderRoute
+  RecommendRoute: typeof RecommendRoute
+  EventsNewRoute: typeof EventsNewRoute
+  PTokenRoute: typeof PTokenRoute
+  RTokenRoute: typeof RTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/collect': {
+      id: '/collect'
+      path: '/collect'
+      fullPath: '/collect'
+      preLoaderRoute: typeof CollectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order': {
+      id: '/order'
+      path: '/order'
+      fullPath: '/order'
+      preLoaderRoute: typeof OrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recommend': {
+      id: '/recommend'
+      path: '/recommend'
+      fullPath: '/recommend'
+      preLoaderRoute: typeof RecommendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/new': {
+      id: '/events/new'
+      path: '/events/new'
+      fullPath: '/events/new'
+      preLoaderRoute: typeof EventsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/p/$token': {
+      id: '/p/$token'
+      path: '/p/$token'
+      fullPath: '/p/$token'
+      preLoaderRoute: typeof PTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/r/$token': {
+      id: '/r/$token'
+      path: '/r/$token'
+      fullPath: '/r/$token'
+      preLoaderRoute: typeof RTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CollectRoute: CollectRoute,
+  LoginRoute: LoginRoute,
+  OrderRoute: OrderRoute,
+  RecommendRoute: RecommendRoute,
+  EventsNewRoute: EventsNewRoute,
+  PTokenRoute: PTokenRoute,
+  RTokenRoute: RTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
