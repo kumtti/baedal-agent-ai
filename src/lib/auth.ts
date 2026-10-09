@@ -32,3 +32,6 @@ export function signIn(provider: Provider) {
   set({ name: "김배민", title: "대리", team: "우아한형제들 마케팅팀", provider, card: "법인카드 신한 **** 1234" });
 }
 export function signOut() { set(null); }
+export function updateUser(patch: Partial<Pick<DemoUser, "name" | "title" | "team">>) {
+  if (user) set({ ...user, ...patch });
+}

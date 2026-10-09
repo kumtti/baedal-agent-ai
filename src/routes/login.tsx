@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CreditCard, Loader2, LogOut, MessageCircle, Phone, X } from "lucide-react";
+import { CreditCard, Loader2, LogOut, MessageCircle, Pencil, Phone, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { AppShell, Card } from "@/components/AppShell";
-import { signIn, signOut, useUser, type Provider } from "@/lib/auth";
+import { signIn, signOut, updateUser, useUser, type Provider } from "@/lib/auth";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -29,6 +29,7 @@ const history = [
 function Login() {
   const user = useUser();
   const [loading, setLoading] = useState<Provider | null>(null);
+  const [editing, setEditing] = useState(false);
 
   const go = (p: Provider) => {
     setLoading(p);
@@ -44,14 +45,41 @@ function Login() {
       <AppShell>
         <div className="space-y-4 p-5">
           <Card>
-            <div className="flex items-center gap-4">
-              <div className="grid size-14 place-items-center rounded-full bg-primary text-lg font-black text-primary-foreground">{user.name[0]}</div>
-              <div>
-                <p className="text-lg font-bold">{user.name} {user.title}</p>
-                <p className="text-sm text-muted-foreground">{user.team}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{label[user.provider]} 간편로그인</p>
+            {editing ? (
+              <form
+                className="space-y-3"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const f = new FormData(e.currentTarget);
+                  const name = String(f.get("name")).trim();
+                  if (!name) { toast.error("이름을 입력해 주세요"); return; }
+                  updateUser({ name, title: String(f.get("title")).trim(), team: String(f.get("team")).trim() });
+                  setEditing(false);
+                  toast.success("프로필이 저장되었습니다");
+                }}
+              >
+                {([["name", "이름", user.name], ["title", "직급", user.title], ["team", "소속", user.team]] as const).map(([k, l, v]) => (
+                  <label key={k} className="block text-sm font-semibold">
+                    {l}
+                    <input name={k} defaultValue={v} maxLength={40} className="mt-1 h-11 w-full rounded-xl border border-border bg-background px-3 font-normal outline-none focus:border-primary" />
+                  </label>
+                ))}
+                <div className="flex gap-2 pt-1">
+                  <button type="button" onClick={() => setEditing(false)} className="h-11 flex-1 rounded-xl border border-border font-semibold">취소</button>
+                  <button type="submit" className="h-11 flex-1 rounded-xl bg-primary font-bold text-primary-foreground">저장</button>
+                </div>
+              </form>
+            ) : (
+              <div className="flex items-center gap-4">
+                <div className="grid size-14 shrink-0 place-items-center rounded-full bg-primary text-lg font-black text-primary-foreground">{user.name[0]}</div>
+                <div className="flex-1">
+                  <p className="text-lg font-bold">{user.name} {user.title}</p>
+                  <p className="text-sm text-muted-foreground">{user.team}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{label[user.provider]} 간편로그인</p>
+                </div>
+                <button onClick={() => setEditing(true)} aria-label="프로필 수정" className="grid size-10 place-items-center rounded-full bg-secondary"><Pencil className="size-4" /></button>
               </div>
-            </div>
+            )}
           </Card>
           <Card>
             <p className="flex items-center gap-2 font-bold"><CreditCard className="size-5 text-primary-strong" /> 등록된 결제수단</p>
