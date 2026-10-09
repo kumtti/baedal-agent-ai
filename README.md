@@ -1,6 +1,8 @@
 # Baedal Agent AI
 
-첨부된 md파일을 참고해서 AI에이전트 기반 유저 플로우를 경험할 매달의 민족 서비스 고도를 위한 앱빌드 해줘
+첨부된 md파일을 참고해서 
+
+AI에이전트 기반 유저 플로우를 경험할 매달의 민족 서비스 고도를 위한 앱빌드 해줘
 
 This project was built with [Lovable](https://lovable.dev).
 
