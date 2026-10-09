@@ -52,7 +52,7 @@ function Login() {
                   e.preventDefault();
                   const f = new FormData(e.currentTarget);
                   const name = String(f.get("name")).trim();
-                  if (!name) return toast.error("이름을 입력해 주세요");
+                  if (!name) { toast.error("이름을 입력해 주세요"); return; }
                   updateUser({ name, title: String(f.get("title")).trim(), team: String(f.get("team")).trim() });
                   setEditing(false);
                   toast.success("프로필이 저장되었습니다");
