@@ -5,7 +5,7 @@ import { AppShell, Card, CtaButton, FlowSteps } from "@/components/AppShell";
 import { setEvent, useEvent, won } from "@/lib/demo";
 
 export const Route = createFileRoute("/events/new")({
-  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s.q === "string" ? s.q : "" }),
+  validateSearch: (s: Record<string, unknown>): { q?: string } => ({ q: typeof s["q"] === "string" ? s["q"] : "" }),
   head: () => ({
     meta: [
       { title: "새 단체주문 만들기 — 배민 단체주문 AI" },

@@ -83,7 +83,7 @@ function Home() {
           <p className="text-xs font-bold text-primary-strong">배민 단체 AI 앙상블 추천</p>
           <div className="mt-1 flex items-center justify-between">
             <h2 className="text-lg font-extrabold">사전 검증 단체 전용 큐레이션</h2>
-            <Link to="/events/new" className="flex items-center text-sm text-muted-foreground">전체 <ArrowRight className="size-4" /></Link>
+            <Link to="/events/new" search={{ q: "" }} className="flex items-center text-sm text-muted-foreground">전체 <ArrowRight className="size-4" /></Link>
           </div>
         </div>
         {candidates.slice(0, 2).map((c) => (

@@ -23,7 +23,7 @@ function Recommend() {
   const nav = useNavigate();
   const [sel, setSel] = useState(ev.candidateId ?? candidates[0].id);
   const [open, setOpen] = useState<string | null>(null);
-  const selected = candidates.find((c) => c.id === sel)!;
+  const selected = candidates.find((c) => c.id === sel) ?? candidates[0]!;
 
   const choose = () => {
     setEvent({ candidateId: sel, status: "collecting", responses: seedResponses(selected) });

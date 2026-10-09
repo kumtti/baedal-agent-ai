@@ -154,13 +154,13 @@ export function useEvent() {
 }
 
 export function selectedCandidate(s: EventState) {
-  return candidates.find((c) => c.id === s.candidateId) ?? candidates[0];
+  return candidates.find((c) => c.id === s.candidateId) ?? candidates[0]!;
 }
 
 /** Seeds simulated responses so the collect page has realistic progress. */
 export function seedResponses(c: Candidate): Response[] {
   const m = c.menus;
-  const pick = (i: number) => m[i % m.length].id;
+  const pick = (i: number) => m[i % m.length]!.id;
   return [
     { name: "김서연", menuId: pick(0), host: true },
     { name: "이준호", menuId: m.find((x) => x.tag === "비건")?.id ?? pick(1), allergy: "비건" },
