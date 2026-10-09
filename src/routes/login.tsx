@@ -77,7 +77,7 @@ function Login() {
   }
 
   const btn = "flex h-14 w-full items-center justify-center gap-2 rounded-full text-base font-bold disabled:opacity-60";
-  const icon = (p: Provider, el: React.ReactNode) => (loading === p ? <Loader2 className="size-5 animate-spin" /> : el);
+  const icon = (p: Provider, el: import("react").ReactNode) => (loading === p ? <Loader2 className="size-5 animate-spin" /> : el);
   return (
     <div className="min-h-screen bg-secondary">
       <div className="mx-auto flex min-h-screen max-w-md flex-col bg-card px-6 py-5">
