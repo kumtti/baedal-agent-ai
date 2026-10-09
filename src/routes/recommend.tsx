@@ -21,7 +21,7 @@ export const Route = createFileRoute("/recommend")({
 function Recommend() {
   const ev = useEvent();
   const nav = useNavigate();
-  const [sel, setSel] = useState(ev.candidateId ?? candidates[0].id);
+  const [sel, setSel] = useState(ev.candidateId ?? candidates[0]!.id);
   const [open, setOpen] = useState<string | null>(null);
   const selected = candidates.find((c) => c.id === sel) ?? candidates[0]!;
 
